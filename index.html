@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>todae digital</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="todae digital — strategy, design and engineering for ambitious teams." />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="todae digital" />
+  <meta property="og:description" content="Strategy, design and engineering for ambitious teams." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://todaedigital.com" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@900&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet" />
+
+  <style>
+    @font-face {
+      font-family: 'Söhne';
+      font-weight: 400 900;
+      src: local('Söhne'), local('Soehne'), local('Söhne Buch'), local('Söhne Kraftig');
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Söhne Mono';
+      font-weight: 400 600;
+      src: local('Söhne Mono'), local('Soehne Mono');
+      font-display: swap;
+    }
+
+    :root {
+      --forest: #0E3B3A;
+      --cream:  #F3E9D2;
+      --amber:  #F0B034;
+      --sans:   'Söhne', 'Inter', system-ui, -apple-system, sans-serif;
+      --mono:   'Söhne Mono', 'JetBrains Mono', ui-monospace, monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      height: 100%;
+    }
+
+    body {
+      background: var(--forest);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    .lockup {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      user-select: none;
+    }
+
+    .wordmark-row {
+      display: flex;
+      align-items: baseline;
+      line-height: 1;
+    }
+
+    .wordmark {
+      font-family: var(--sans);
+      font-weight: 900;
+      font-size: clamp(72px, 16vw, 200px);
+      letter-spacing: -0.03em;
+      color: var(--cream);
+      line-height: 0.9;
+    }
+
+    .dot {
+      font-family: var(--sans);
+      font-weight: 900;
+      font-size: clamp(72px, 16vw, 200px);
+      color: var(--amber);
+      line-height: 0.9;
+      margin-left: -0.01em;
+    }
+
+    .descriptor {
+      font-family: var(--mono);
+      font-weight: 500;
+      font-size: clamp(10px, 1.1vw, 16px);
+      color: var(--cream);
+      text-transform: uppercase;
+      letter-spacing: 0.32em;
+      margin-top: clamp(16px, 2.5vw, 28px);
+      opacity: 0.75;
+    }
+  </style>
+</head>
+<body>
+  <div class="lockup">
+    <div class="wordmark-row">
+      <span class="wordmark">todae</span>
+      <span class="dot">.</span>
+    </div>
+    <div class="descriptor">Digital / Strategy / Build</div>
+  </div>
+</body>
+</html>
