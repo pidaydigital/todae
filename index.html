@@ -155,24 +155,25 @@
       wordEl.style.fontSize = '';
       waveWrap.style.width  = '';
 
-      const captionW = captionEl.getBoundingClientRect().width;
-      const wordW    = wordEl.getBoundingClientRect().width;
+      // Double RAF ensures the browser has painted the reset before we measure
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        const captionW = captionEl.getBoundingClientRect().width;
+        const wordW    = wordEl.getBoundingClientRect().width;
 
-      if (captionW > wordW) {
-        // Mobile: caption is wider — scale the wordmark up to match it
-        const base = parseFloat(getComputedStyle(wordEl).fontSize);
-        wordEl.style.fontSize = (base * captionW / wordW) + 'px';
-        waveWrap.style.width  = captionW + 'px';
-      } else {
-        // Desktop: wordmark is wider — wave matches the "todae" text span only
-        waveWrap.style.width = wordText.getBoundingClientRect().width + 'px';
-      }
+        if (captionW > wordW) {
+          // Mobile: caption is wider — scale the wordmark up to match it
+          const base = parseFloat(getComputedStyle(wordEl).fontSize);
+          wordEl.style.fontSize = (base * captionW / wordW) + 'px';
+          waveWrap.style.width  = captionW + 'px';
+        } else {
+          // Desktop: wordmark is wider — wave matches the "todae" text span only
+          waveWrap.style.width = wordText.getBoundingClientRect().width + 'px';
+        }
+      }));
     }
 
-    document.fonts.ready.then(() => {
-      sizeAll();
-      window.addEventListener('resize', sizeAll);
-    });
+    document.fonts.ready.then(sizeAll);
+    window.addEventListener('resize', sizeAll);
   </script>
 
 </body>
