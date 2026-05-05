@@ -73,7 +73,6 @@
 
     /* sine wave */
     .wave-wrap {
-      width: 95%;
       margin-top: 6px;
       display: flex;
       justify-content: center;
@@ -102,7 +101,7 @@
 
   <div class="lockup">
     <div class="word">
-      <span>todae</span>
+      <span id="wordText">todae</span>
       <span class="dot"></span>
     </div>
     <div class="wave-wrap">
@@ -136,15 +135,29 @@
       return d.join(' ');
     }
 
-    const svg  = document.getElementById('wave');
+    const svg      = document.getElementById('wave');
+    const waveWrap = svg.parentElement;
+    const wordText = document.getElementById('wordText');
+
     const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-    path.setAttribute('fill',             'none');
-    path.setAttribute('stroke',           '#3A7A6A');
-    path.setAttribute('stroke-width',     '4');
-    path.setAttribute('stroke-linecap',   'round');
-    path.setAttribute('stroke-linejoin',  'round');
+    path.setAttribute('fill',            'none');
+    path.setAttribute('stroke',          '#3A7A6A');
+    path.setAttribute('stroke-width',    '4');
+    path.setAttribute('stroke-linecap',  'round');
+    path.setAttribute('stroke-linejoin', 'round');
     path.setAttribute('d', buildWave(1000, 18, 3));
     svg.appendChild(path);
+
+    // Match wave width to the "todae" text (not the dot)
+    function sizeWave() {
+      const w = wordText.getBoundingClientRect().width;
+      waveWrap.style.width = w + 'px';
+    }
+
+    document.fonts.ready.then(() => {
+      sizeWave();
+      window.addEventListener('resize', sizeWave);
+    });
   </script>
 
 </body>
