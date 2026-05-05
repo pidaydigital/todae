@@ -11,6 +11,8 @@
   <meta property="og:description" content="Color tokens, typography, mark variants, and usage rules for todae digital." />
   <meta property="og:type" content="website" />
 
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -466,6 +468,121 @@
       opacity: 0.7;
     }
 
+    /* ── favicon / app icon ── */
+    .favicons { grid-column: 1 / -1; }
+    .favicons-row {
+      display: flex;
+      align-items: flex-end;
+      gap: 40px;
+      margin-top: 8px;
+    }
+    .fav {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+    .fav .tile {
+      background: var(--forest);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .fav .tile.rounded { border-radius: 22%; }
+    .fav .tile.square  { border-radius: 4px; }
+    .fav .tile.circle  { border-radius: 50%; }
+
+    .fav .glyph {
+      font-family: var(--sans);
+      font-weight: 900;
+      color: var(--cream);
+      line-height: 1;
+      letter-spacing: -0.06em;
+      display: flex;
+      align-items: baseline;
+    }
+    .fav .glyph .gd { color: var(--amber); }
+
+    .fav .size-512 { width: 168px; height: 168px; }
+    .fav .size-512 .glyph { font-size: 130px; }
+
+    .fav .size-180 { width: 96px; height: 96px; }
+    .fav .size-180 .glyph { font-size: 76px; }
+
+    .fav .size-64  { width: 64px; height: 64px; }
+    .fav .size-64 .glyph { font-size: 50px; }
+
+    .fav .size-32  { width: 32px; height: 32px; }
+    .fav .size-32 .glyph { font-size: 26px; }
+
+    .fav .size-16  { width: 16px; height: 16px; }
+    .fav .size-16 .glyph { font-size: 14px; letter-spacing: -0.08em; }
+
+    .fav .meta {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--cream);
+      opacity: 0.55;
+    }
+
+    .browser-tab {
+      margin-top: 28px;
+      background: rgba(243, 233, 210, 0.04);
+      border: 1px solid rgba(243, 233, 210, 0.12);
+      border-radius: 8px 8px 0 0;
+      padding: 10px;
+      display: flex;
+      gap: 6px;
+      align-items: flex-end;
+    }
+    .browser-tab .tab {
+      background: var(--bone);
+      color: var(--forest);
+      padding: 9px 14px;
+      border-radius: 8px 8px 0 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--sans);
+      font-size: 12px;
+      font-weight: 500;
+      max-width: 220px;
+    }
+    .browser-tab .tab .ficon {
+      width: 16px;
+      height: 16px;
+      border-radius: 3px;
+      background: var(--forest);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex: 0 0 auto;
+    }
+    .browser-tab .tab .ficon .glyph {
+      font-family: var(--sans);
+      font-weight: 900;
+      font-size: 13px;
+      line-height: 1;
+      letter-spacing: -0.08em;
+      color: var(--cream);
+      display: flex;
+      align-items: baseline;
+    }
+    .browser-tab .tab .ficon .glyph .gd { color: var(--amber); }
+    .browser-tab .tab .x { opacity: 0.5; font-family: var(--mono); }
+    .browser-tab .ghost-tab {
+      background: transparent;
+      color: var(--cream);
+      opacity: 0.4;
+      padding: 9px 14px;
+      font-family: var(--sans);
+      font-size: 12px;
+    }
+
     /* ── usage rules ── */
     .usage {
       grid-column: 1 / -1;
@@ -533,7 +650,7 @@
   <!-- header -->
   <header class="header">
     <div>
-      <h1>Brand Board · v1.0</h1>
+      <h1>Brand Board · v1.1</h1>
       <div class="title">todae digital</div>
     </div>
     <div class="meta">May 2026 · Internal Reference</div>
@@ -557,41 +674,13 @@
   <!-- color tokens -->
   <section class="card colors">
     <div class="label">Color Tokens</div>
-    <div class="color-row">
-      <div class="swatch" style="background:#0E3B3A"></div>
-      <div class="hex">#0E3B3A</div>
-      <div class="role">Background · Forest</div>
-    </div>
-    <div class="color-row">
-      <div class="swatch" style="background:#F3E9D2"></div>
-      <div class="hex">#F3E9D2</div>
-      <div class="role">Wordmark · Cream</div>
-    </div>
-    <div class="color-row">
-      <div class="swatch" style="background:#F0B034"></div>
-      <div class="hex">#F0B034</div>
-      <div class="role">Accent · Amber</div>
-    </div>
-    <div class="color-row">
-      <div class="swatch" style="background:#3A7A6A"></div>
-      <div class="hex">#3A7A6A</div>
-      <div class="role">Reserved · Pine</div>
-    </div>
-    <div class="color-row">
-      <div class="swatch" style="background:#5DA3B8"></div>
-      <div class="hex">#5DA3B8</div>
-      <div class="role">Reserved · Blue</div>
-    </div>
-    <div class="color-row">
-      <div class="swatch" style="background:#EF6E63"></div>
-      <div class="hex">#EF6E63</div>
-      <div class="role">Reserved · Coral</div>
-    </div>
-    <div class="color-row">
-      <div class="swatch" style="background:#F3EFE7"></div>
-      <div class="hex">#F3EFE7</div>
-      <div class="role">Surface · Bone</div>
-    </div>
+    <div class="color-row"><div class="swatch" style="background:#0E3B3A"></div><div class="hex">#0E3B3A</div><div class="role">Background · Forest</div></div>
+    <div class="color-row"><div class="swatch" style="background:#F3E9D2"></div><div class="hex">#F3E9D2</div><div class="role">Wordmark · Cream</div></div>
+    <div class="color-row"><div class="swatch" style="background:#F0B034"></div><div class="hex">#F0B034</div><div class="role">Accent · Amber</div></div>
+    <div class="color-row"><div class="swatch" style="background:#3A7A6A"></div><div class="hex">#3A7A6A</div><div class="role">Reserved · Pine</div></div>
+    <div class="color-row"><div class="swatch" style="background:#5DA3B8"></div><div class="hex">#5DA3B8</div><div class="role">Reserved · Blue</div></div>
+    <div class="color-row"><div class="swatch" style="background:#EF6E63"></div><div class="hex">#EF6E63</div><div class="role">Reserved · Coral</div></div>
+    <div class="color-row"><div class="swatch" style="background:#F3EFE7"></div><div class="hex">#F3EFE7</div><div class="role">Surface · Bone</div></div>
   </section>
 
   <!-- mark variants -->
@@ -713,6 +802,65 @@
     </div>
   </section>
 
+  <!-- favicon / app icon -->
+  <section class="card favicons">
+    <div class="label">Favicon · App Icon</div>
+    <div class="favicons-row">
+      <div class="fav">
+        <div class="tile rounded size-512">
+          <div class="glyph">t<span class="gd">.</span></div>
+        </div>
+        <div class="meta">512 · App Icon</div>
+      </div>
+      <div class="fav">
+        <div class="tile rounded size-180">
+          <div class="glyph">t<span class="gd">.</span></div>
+        </div>
+        <div class="meta">180 · iOS</div>
+      </div>
+      <div class="fav">
+        <div class="tile square size-64">
+          <div class="glyph">t<span class="gd">.</span></div>
+        </div>
+        <div class="meta">64</div>
+      </div>
+      <div class="fav">
+        <div class="tile square size-32">
+          <div class="glyph">t<span class="gd">.</span></div>
+        </div>
+        <div class="meta">32</div>
+      </div>
+      <div class="fav">
+        <div class="tile square size-16">
+          <div class="glyph">t<span class="gd">.</span></div>
+        </div>
+        <div class="meta">16</div>
+      </div>
+      <div class="fav">
+        <div class="tile circle size-64" style="background:var(--amber);">
+          <div class="glyph" style="color:var(--forest);">t<span class="gd" style="color:var(--forest);">.</span></div>
+        </div>
+        <div class="meta">Alt · Amber</div>
+      </div>
+      <div class="fav">
+        <div class="tile circle size-64" style="background:var(--bone);">
+          <div class="glyph" style="color:var(--forest);">t<span class="gd">.</span></div>
+        </div>
+        <div class="meta">Alt · Bone</div>
+      </div>
+    </div>
+
+    <div class="browser-tab">
+      <div class="tab">
+        <div class="ficon"><div class="glyph">t<span class="gd">.</span></div></div>
+        <span>todae digital</span>
+        <span class="x">×</span>
+      </div>
+      <div class="ghost-tab">Inbox (3)</div>
+      <div class="ghost-tab">Linear</div>
+    </div>
+  </section>
+
   <!-- usage rules -->
   <section class="usage">
     <div class="rule do">
@@ -739,7 +887,7 @@
 
   <footer class="footer">
     <span>todae digital · brand reference</span>
-    <span>v1.0 · May 2026</span>
+    <span>v1.1 · May 2026</span>
   </footer>
 
 </div>
