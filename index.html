@@ -18,10 +18,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 
   <style>
-    /*
-      Primary typeface: Söhne (Klim Type Foundry — licensed).
-      Falls back to Inter for anyone without the local install.
-    */
     @font-face {
       font-family: 'Söhne';
       font-weight: 400 900;
@@ -43,7 +39,6 @@
       --blue:   #5DA3B8;
       --coral:  #EF6E63;
       --bone:   #F3EFE7;
-
       --sans: 'Söhne', 'Inter', system-ui, -apple-system, sans-serif;
       --mono: 'Söhne Mono', 'JetBrains Mono', ui-monospace, monospace;
     }
@@ -58,8 +53,10 @@
       text-rendering: optimizeLegibility;
     }
 
+    /* ── board ── */
     .board {
-      width: 1440px;
+      width: 100%;
+      max-width: 1440px;
       margin: 0 auto;
       padding: 64px;
       display: grid;
@@ -475,6 +472,7 @@
       align-items: flex-end;
       gap: 40px;
       margin-top: 8px;
+      flex-wrap: wrap;
     }
     .fav {
       display: flex;
@@ -493,7 +491,6 @@
     .fav .tile.rounded { border-radius: 22%; }
     .fav .tile.square  { border-radius: 4px; }
     .fav .tile.circle  { border-radius: 50%; }
-
     .fav .glyph {
       font-family: var(--sans);
       font-weight: 900;
@@ -504,22 +501,16 @@
       align-items: baseline;
     }
     .fav .glyph .gd { color: var(--amber); }
-
     .fav .size-512 { width: 168px; height: 168px; }
     .fav .size-512 .glyph { font-size: 130px; }
-
     .fav .size-180 { width: 96px; height: 96px; }
     .fav .size-180 .glyph { font-size: 76px; }
-
     .fav .size-64  { width: 64px; height: 64px; }
     .fav .size-64 .glyph { font-size: 50px; }
-
     .fav .size-32  { width: 32px; height: 32px; }
     .fav .size-32 .glyph { font-size: 26px; }
-
     .fav .size-16  { width: 16px; height: 16px; }
     .fav .size-16 .glyph { font-size: 14px; letter-spacing: -0.08em; }
-
     .fav .meta {
       font-family: var(--mono);
       font-size: 10px;
@@ -640,6 +631,109 @@
       text-transform: uppercase;
       color: var(--cream);
       opacity: 0.5;
+    }
+
+    /* ────────────────────────────────────────────
+       RESPONSIVE
+    ──────────────────────────────────────────── */
+
+    /* Tablet: 640px – 1023px */
+    @media (max-width: 1023px) {
+      .board {
+        padding: 40px;
+        grid-template-columns: repeat(6, 1fr);
+        gap: 20px;
+      }
+      .colors { grid-column: 1 / 4; }
+      .marks  { grid-column: 4 / 7; }
+      .type   { grid-column: 1 / -1; }
+      .voice  { grid-column: 1 / -1; }
+
+      .wordmark, .dot { font-size: clamp(72px, 11vw, 160px); }
+      .descriptor { font-size: clamp(10px, 1.1vw, 14px); margin-top: 20px; }
+
+      .type-display-h1 { font-size: clamp(40px, 5.5vw, 64px); }
+      .type-display-h2 { font-size: clamp(22px, 3vw, 32px); }
+
+      .applications { grid-template-columns: repeat(2, 1fr); }
+      .usage        { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    /* Mobile: < 640px */
+    @media (max-width: 639px) {
+      .board {
+        padding: 24px;
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      /* header stacks */
+      .header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        padding-bottom: 24px;
+      }
+
+      /* hero: taller aspect ratio so wordmark has room */
+      .hero { aspect-ratio: 3 / 2; }
+      .hero .corner.tr,
+      .hero .corner.bl { display: none; }
+      .hero .corner { font-size: 9px; letter-spacing: 0.2em; }
+      .hero .corner.tl { top: 16px; left: 16px; }
+      .hero .corner.br { bottom: 16px; right: 16px; }
+
+      .wordmark, .dot { font-size: clamp(40px, 13vw, 80px); }
+      .descriptor { font-size: 9px; letter-spacing: 0.28em; margin-top: 14px; }
+
+      /* all sections full width in single-column grid */
+      .colors,
+      .marks,
+      .type,
+      .voice  { grid-column: 1 / -1; }
+
+      /* marks: 2×2 grid stays, but shrink slightly */
+      .mini { height: 90px; }
+      .mini .mini-word,
+      .mini .mini-dot { font-size: 26px; }
+
+      /* card padding tighter */
+      .card { padding: 20px; }
+
+      /* color row smaller swatch */
+      .swatch { width: 40px; height: 40px; }
+      .color-row { grid-template-columns: 40px 1fr auto; gap: 14px; }
+      .color-row .hex { font-size: 14px; }
+      .color-row .role { font-size: 9px; letter-spacing: 0.2em; }
+
+      /* type spec stacks */
+      .type-spec { grid-template-columns: 1fr; gap: 10px; padding: 16px 0; }
+      .type-display-h1 { font-size: clamp(32px, 10vw, 48px); }
+      .type-display-h2 { font-size: clamp(18px, 5vw, 26px); }
+      .type-display-body { font-size: 14px; max-width: none; }
+
+      /* applications: single column */
+      .applications { grid-template-columns: 1fr; gap: 16px; }
+      .app.poster .big { font-size: 36px; }
+      .app.social .stamp { font-size: 48px; }
+
+      /* favicon: wrap, hide tiny academic sizes */
+      .favicons-row { gap: 20px; }
+      .fav-tiny { display: none; }
+      .browser-tab { display: none; }
+
+      /* usage: 2 columns on mobile */
+      .usage { grid-template-columns: 1fr 1fr; gap: 12px; }
+      .rule { padding: 16px; }
+
+      /* footer stacks */
+      .footer { flex-direction: column; gap: 6px; }
+    }
+
+    /* Very small: < 380px */
+    @media (max-width: 379px) {
+      .usage { grid-template-columns: 1fr; }
+      .mark-grid { grid-template-columns: 1fr 1fr; }
     }
   </style>
 </head>
@@ -818,19 +912,19 @@
         </div>
         <div class="meta">180 · iOS</div>
       </div>
-      <div class="fav">
+      <div class="fav fav-tiny">
         <div class="tile square size-64">
           <div class="glyph">t<span class="gd">.</span></div>
         </div>
         <div class="meta">64</div>
       </div>
-      <div class="fav">
+      <div class="fav fav-tiny">
         <div class="tile square size-32">
           <div class="glyph">t<span class="gd">.</span></div>
         </div>
         <div class="meta">32</div>
       </div>
-      <div class="fav">
+      <div class="fav fav-tiny">
         <div class="tile square size-16">
           <div class="glyph">t<span class="gd">.</span></div>
         </div>
