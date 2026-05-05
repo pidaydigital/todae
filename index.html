@@ -2,1024 +2,150 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>todae digital — Brand Board</title>
+  <title>todae digital</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="todae digital brand reference — color tokens, typography, mark variants, and usage rules." />
+  <meta name="description" content="todae digital — strategy, design and engineering for ambitious teams." />
 
   <!-- Open Graph -->
-  <meta property="og:title" content="todae digital — Brand Board" />
-  <meta property="og:description" content="Color tokens, typography, mark variants, and usage rules for todae digital." />
+  <meta property="og:title" content="todae digital" />
+  <meta property="og:description" content="Strategy, design and engineering for ambitious teams." />
   <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://todaedigital.com" />
 
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
 
   <style>
-    @font-face {
-      font-family: 'Söhne';
-      font-weight: 400 900;
-      src: local('Söhne'), local('Soehne'), local('Söhne Buch'), local('Söhne Kraftig');
-      font-display: swap;
-    }
-    @font-face {
-      font-family: 'Söhne Mono';
-      font-weight: 400 600;
-      src: local('Söhne Mono'), local('Soehne Mono');
-      font-display: swap;
-    }
-
     :root {
       --forest: #0E3B3A;
       --cream:  #F3E9D2;
       --amber:  #F0B034;
       --pine:   #3A7A6A;
-      --blue:   #5DA3B8;
-      --coral:  #EF6E63;
-      --bone:   #F3EFE7;
-      --sans: 'Söhne', 'Inter', system-ui, -apple-system, sans-serif;
-      --mono: 'Söhne Mono', 'JetBrains Mono', ui-monospace, monospace;
     }
 
-    * { box-sizing: border-box; }
-    html, body { margin: 0; padding: 0; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body { height: 100%; }
+
     body {
       background: var(--forest);
-      font-family: var(--sans);
-      color: var(--cream);
+      min-height: 100vh;
+      min-height: 100dvh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       -webkit-font-smoothing: antialiased;
       text-rendering: optimizeLegibility;
     }
-
-    /* ── board ── */
-    .board {
-      width: 100%;
-      max-width: 1440px;
-      margin: 0 auto;
-      padding: 64px;
-      display: grid;
-      grid-template-columns: repeat(12, 1fr);
-      gap: 24px;
-      background: var(--forest);
-    }
-
-    /* ── header ── */
-    .header {
-      grid-column: 1 / -1;
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      padding-bottom: 32px;
-      border-bottom: 1px solid rgba(243, 233, 210, 0.15);
-    }
-    .header .meta {
-      font-family: var(--mono);
-      font-size: 11px;
-      letter-spacing: 0.32em;
-      text-transform: uppercase;
-      color: var(--cream);
-      opacity: 0.6;
-    }
-    .header h1 {
-      font-family: var(--mono);
-      font-size: 13px;
-      font-weight: 500;
-      letter-spacing: 0.32em;
-      text-transform: uppercase;
-      margin: 0 0 8px 0;
-      color: var(--cream);
-      opacity: 0.6;
-    }
-    .header .title {
-      font-family: var(--sans);
-      font-weight: 900;
-      font-size: 28px;
-      letter-spacing: -0.02em;
-      color: var(--cream);
-    }
-
-    /* ── shared card ── */
-    .card {
-      background: rgba(243, 233, 210, 0.04);
-      border: 1px solid rgba(243, 233, 210, 0.12);
-      border-radius: 4px;
-      padding: 32px;
-      position: relative;
-    }
-    .card .label {
-      font-family: var(--mono);
-      font-size: 11px;
-      font-weight: 500;
-      letter-spacing: 0.32em;
-      text-transform: uppercase;
-      color: var(--cream);
-      opacity: 0.55;
-      margin-bottom: 24px;
-    }
-
-    /* ── hero lockup ── */
-    .hero {
-      grid-column: 1 / -1;
-      aspect-ratio: 21 / 9;
-      background: var(--forest);
-      border: 1px solid rgba(243, 233, 210, 0.15);
-      border-radius: 4px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      overflow: hidden;
-    }
-    .hero .corner {
-      position: absolute;
-      font-family: var(--mono);
-      font-size: 11px;
-      letter-spacing: 0.32em;
-      text-transform: uppercase;
-      color: var(--cream);
-      opacity: 0.5;
-    }
-    .hero .corner.tl { top: 24px; left: 24px; }
-    .hero .corner.tr { top: 24px; right: 24px; }
-    .hero .corner.bl { bottom: 24px; left: 24px; }
-    .hero .corner.br { bottom: 24px; right: 24px; }
 
     .lockup {
       display: flex;
       flex-direction: column;
       align-items: center;
-    }
-    .wordmark-row {
-      display: flex;
-      align-items: baseline;
-      line-height: 0.9;
-    }
-    .wordmark {
-      font-family: var(--sans);
-      font-weight: 900;
-      color: var(--cream);
-      font-size: 200px;
-      letter-spacing: -0.03em;
-      line-height: 0.9;
-    }
-    .dot {
-      font-family: var(--sans);
-      font-weight: 900;
-      color: var(--amber);
-      font-size: 200px;
-      line-height: 0.9;
-      margin-left: -0.02em;
-    }
-    .descriptor {
-      font-family: var(--mono);
-      font-weight: 500;
-      color: var(--cream);
-      text-transform: uppercase;
-      letter-spacing: 0.32em;
-      font-size: 16px;
-      margin-top: 28px;
-      opacity: 0.85;
+      user-select: none;
     }
 
-    /* ── color tokens ── */
-    .colors { grid-column: 1 / 8; }
-    .color-row {
-      display: grid;
-      grid-template-columns: 56px 1fr auto;
-      align-items: center;
-      gap: 24px;
-      padding: 14px 0;
-      border-bottom: 1px solid rgba(243, 233, 210, 0.08);
-      cursor: pointer;
-      border-radius: 3px;
-      transition: background 0.15s;
-      margin: 0 -8px;
-      padding-left: 8px;
-      padding-right: 8px;
-    }
-    .color-row:hover { background: rgba(243, 233, 210, 0.06); }
-    .color-row.copied { background: rgba(240, 176, 52, 0.12); }
-    .color-row .hex { position: relative; }
-    .color-row .copied-label {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      align-items: center;
-      font-family: var(--mono);
-      font-size: 11px;
-      letter-spacing: 0.32em;
-      text-transform: uppercase;
-      color: var(--amber);
-      opacity: 0;
-      transition: opacity 0.15s;
-      white-space: nowrap;
-    }
-    .color-row.copied .hex-value { opacity: 0; }
-    .color-row.copied .copied-label { opacity: 1; }
-    .color-row:last-child { border-bottom: none; }
-    .swatch {
-      width: 56px;
-      height: 56px;
-      border-radius: 3px;
-      border: 1px solid rgba(243, 233, 210, 0.1);
-    }
-    .color-row .hex {
-      font-family: var(--mono);
-      font-size: 18px;
-      color: var(--cream);
-      letter-spacing: 0.02em;
-    }
-    .color-row .role {
-      font-family: var(--mono);
-      font-size: 11px;
-      font-weight: 500;
-      letter-spacing: 0.32em;
-      text-transform: uppercase;
-      color: var(--cream);
-      opacity: 0.55;
-      text-align: right;
-    }
-
-    /* ── mark variants ── */
-    .marks { grid-column: 8 / -1; display: flex; flex-direction: column; gap: 16px; }
-    .marks .label { margin-bottom: 16px; }
-    .mark-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      flex: 1;
-    }
-    .mini {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-width: 0;
-      height: 110px;
-      border-radius: 3px;
-      position: relative;
-    }
-    .mini .mini-row { display: flex; align-items: baseline; line-height: 0.9; }
-    .mini .mini-word {
-      font-family: var(--sans);
-      font-weight: 900;
-      font-size: 34px;
-      letter-spacing: -0.03em;
-    }
-    .mini .mini-dot {
-      font-family: var(--sans);
-      font-weight: 900;
-      font-size: 34px;
-    }
-    .mini .tag {
-      position: absolute;
-      bottom: 10px;
-      left: 12px;
-      font-family: var(--mono);
-      font-size: 9px;
-      letter-spacing: 0.32em;
-      text-transform: uppercase;
-      opacity: 0.7;
-    }
-
-    /* ── type system ── */
-    .type { grid-column: 1 / 8; }
-    .type-spec {
-      display: grid;
-      grid-template-columns: 120px 1fr;
-      gap: 24px;
-      padding: 20px 0;
-      border-bottom: 1px solid rgba(243, 233, 210, 0.08);
-      align-items: baseline;
-    }
-    .type-spec:last-child { border-bottom: none; }
-    .type-spec .meta {
-      font-family: var(--mono);
-      font-size: 11px;
-      letter-spacing: 0.24em;
-      text-transform: uppercase;
-      opacity: 0.55;
-      line-height: 1.5;
-    }
-    .type-spec .meta strong { display: block; color: var(--cream); opacity: 1; font-weight: 500; margin-bottom: 4px; }
-    .type-display-h1 {
-      font-family: var(--sans);
-      font-weight: 900;
-      font-size: 64px;
-      letter-spacing: -0.03em;
-      line-height: 0.95;
-      color: var(--cream);
-    }
-    .type-display-h2 {
-      font-family: var(--sans);
-      font-weight: 600;
-      font-size: 32px;
-      letter-spacing: -0.02em;
-      line-height: 1.1;
-      color: var(--cream);
-    }
-    .type-display-body {
-      font-family: var(--sans);
-      font-weight: 400;
-      font-size: 16px;
-      line-height: 1.55;
-      color: var(--cream);
-      opacity: 0.85;
-      max-width: 48ch;
-    }
-    .type-display-mono {
-      font-family: var(--mono);
-      font-weight: 500;
-      font-size: 12px;
-      letter-spacing: 0.32em;
-      text-transform: uppercase;
-      color: var(--cream);
-      opacity: 0.75;
-    }
-
-    /* ── voice / principles ── */
-    .voice { grid-column: 8 / -1; display: flex; flex-direction: column; }
-    .voice .principles { display: flex; flex-direction: column; gap: 18px; }
-    .principle {
-      display: grid;
-      grid-template-columns: 28px 1fr;
-      gap: 16px;
-      align-items: baseline;
-    }
-    .principle .num {
-      font-family: var(--mono);
-      font-size: 11px;
-      letter-spacing: 0.32em;
-      color: var(--amber);
-      opacity: 0.9;
-    }
-    .principle h4 {
-      margin: 0 0 4px 0;
-      font-family: var(--sans);
-      font-weight: 600;
-      font-size: 18px;
-      letter-spacing: -0.01em;
-      color: var(--cream);
-    }
-    .principle p {
-      margin: 0;
-      font-family: var(--sans);
-      font-weight: 400;
-      font-size: 13px;
-      line-height: 1.5;
-      color: var(--cream);
-      opacity: 0.7;
-    }
-
-    /* ── applications ── */
-    .applications {
-      grid-column: 1 / -1;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-    }
-    .app {
-      aspect-ratio: 4 / 3;
-      border-radius: 4px;
-      position: relative;
-      overflow: hidden;
-      padding: 32px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-    .app .app-label {
-      font-family: var(--mono);
-      font-size: 10px;
-      letter-spacing: 0.32em;
-      text-transform: uppercase;
-      opacity: 0.6;
-    }
-
-    /* business card */
-    .app.card-app { background: var(--bone); color: var(--forest); }
-    .app.card-app .name {
-      font-family: var(--sans);
-      font-weight: 800;
-      font-size: 24px;
-      letter-spacing: -0.02em;
-      color: var(--forest);
-      margin: 0 0 4px 0;
-    }
-    .app.card-app .role-line {
-      font-family: var(--mono);
-      font-size: 10px;
-      letter-spacing: 0.24em;
-      text-transform: uppercase;
-      color: var(--forest);
-      opacity: 0.6;
-    }
-    .app.card-app .tiny-mark {
-      display: flex;
-      align-items: baseline;
-      line-height: 0.9;
-    }
-    .app.card-app .tiny-mark .w {
-      font-family: var(--sans);
-      font-weight: 900;
-      font-size: 36px;
-      letter-spacing: -0.03em;
-      color: var(--forest);
-    }
-    .app.card-app .tiny-mark .d {
-      font-family: var(--sans);
-      font-weight: 900;
-      font-size: 36px;
-      color: var(--amber);
-    }
-
-    /* poster */
-    .app.poster { background: var(--amber); color: var(--forest); }
-    .app.poster .big {
-      font-family: var(--sans);
-      font-weight: 900;
-      font-size: 48px;
-      letter-spacing: -0.03em;
-      line-height: 0.92;
-      color: var(--forest);
-      margin: 0;
-    }
-    .app.poster .meta {
-      font-family: var(--mono);
-      font-size: 10px;
-      letter-spacing: 0.32em;
-      text-transform: uppercase;
-      color: var(--forest);
-      opacity: 0.7;
-    }
-
-    /* social */
-    .app.social {
-      background: var(--coral);
-      color: var(--cream);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      padding: 24px;
-    }
-    .app.social .stamp {
-      font-family: var(--sans);
-      font-weight: 900;
-      font-size: 64px;
-      letter-spacing: -0.03em;
-      line-height: 0.9;
-      color: var(--cream);
-      text-align: center;
-    }
-    .app.social .stamp .pdot { color: var(--forest); }
-    .app.social .corner-meta {
-      position: absolute;
-      bottom: 16px;
-      left: 16px;
-      right: 16px;
-      display: flex;
-      justify-content: space-between;
-      font-family: var(--mono);
-      font-size: 9px;
-      letter-spacing: 0.32em;
-      text-transform: uppercase;
-      color: var(--cream);
-      opacity: 0.7;
-    }
-
-    /* ── favicon / app icon ── */
-    .favicons { grid-column: 1 / -1; }
-    .favicons-row {
-      display: flex;
-      align-items: flex-end;
-      gap: 40px;
-      margin-top: 8px;
-      flex-wrap: wrap;
-    }
-    .fav {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 12px;
-    }
-    .fav .tile {
-      background: var(--forest);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      overflow: hidden;
-    }
-    .fav .tile.rounded { border-radius: 22%; }
-    .fav .tile.square  { border-radius: 4px; }
-    .fav .tile.circle  { border-radius: 50%; }
-    .fav .glyph {
-      font-family: var(--sans);
-      font-weight: 900;
-      color: var(--cream);
+    /* wordmark */
+    .word {
+      font-family: 'Archivo Black', system-ui, sans-serif;
+      font-size: clamp(48px, 12vw, 180px);
       line-height: 1;
-      letter-spacing: -0.06em;
-      display: flex;
-      align-items: baseline;
-    }
-    .fav .glyph .gd { color: var(--amber); }
-    .fav .size-512 { width: 168px; height: 168px; }
-    .fav .size-512 .glyph { font-size: 130px; }
-    .fav .size-180 { width: 96px; height: 96px; }
-    .fav .size-180 .glyph { font-size: 76px; }
-    .fav .size-64  { width: 64px; height: 64px; }
-    .fav .size-64 .glyph { font-size: 50px; }
-    .fav .size-32  { width: 32px; height: 32px; }
-    .fav .size-32 .glyph { font-size: 26px; }
-    .fav .size-16  { width: 16px; height: 16px; }
-    .fav .size-16 .glyph { font-size: 14px; letter-spacing: -0.08em; }
-    .fav .meta {
-      font-family: var(--mono);
-      font-size: 10px;
-      letter-spacing: 0.32em;
-      text-transform: uppercase;
+      letter-spacing: -0.04em;
       color: var(--cream);
-      opacity: 0.55;
-    }
-
-    .browser-tab {
-      margin-top: 28px;
-      background: rgba(243, 233, 210, 0.04);
-      border: 1px solid rgba(243, 233, 210, 0.12);
-      border-radius: 8px 8px 0 0;
-      padding: 10px;
-      display: flex;
-      gap: 6px;
+      display: inline-flex;
       align-items: flex-end;
     }
-    .browser-tab .tab {
-      background: var(--bone);
-      color: var(--forest);
-      padding: 9px 14px;
-      border-radius: 8px 8px 0 0;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-family: var(--sans);
-      font-size: 12px;
-      font-weight: 500;
-      max-width: 220px;
-    }
-    .browser-tab .tab .ficon {
-      width: 16px;
-      height: 16px;
-      border-radius: 3px;
-      background: var(--forest);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex: 0 0 auto;
-    }
-    .browser-tab .tab .ficon .glyph {
-      font-family: var(--sans);
-      font-weight: 900;
-      font-size: 13px;
-      line-height: 1;
-      letter-spacing: -0.08em;
-      color: var(--cream);
-      display: flex;
-      align-items: baseline;
-    }
-    .browser-tab .tab .ficon .glyph .gd { color: var(--amber); }
-    .browser-tab .tab .x { opacity: 0.5; font-family: var(--mono); }
-    .browser-tab .ghost-tab {
-      background: transparent;
-      color: var(--cream);
-      opacity: 0.4;
-      padding: 9px 14px;
-      font-family: var(--sans);
-      font-size: 12px;
-    }
 
-    /* ── usage rules ── */
-    .usage {
-      grid-column: 1 / -1;
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 24px;
-    }
-    .rule {
-      padding: 24px;
-      border: 1px solid rgba(243, 233, 210, 0.12);
-      border-radius: 4px;
-      background: rgba(243, 233, 210, 0.03);
-    }
-    .rule .icon {
-      width: 36px;
-      height: 36px;
+    /* circular amber dot — sized relative to the wordmark */
+    .word .dot {
+      width: 0.18em;
+      height: 0.18em;
       border-radius: 50%;
+      background: var(--amber);
+      display: inline-block;
+      flex-shrink: 0;
+      margin-left: 0.03em;
+      margin-bottom: 0.04em;
+    }
+
+    /* sine wave */
+    .wave-wrap {
+      width: 95%;
+      margin-top: 6px;
       display: flex;
-      align-items: center;
       justify-content: center;
-      font-family: var(--sans);
-      font-weight: 900;
-      font-size: 20px;
-      margin-bottom: 16px;
     }
-    .rule.do .icon { background: var(--pine); color: var(--cream); }
-    .rule.dont .icon { background: var(--coral); color: var(--cream); }
-    .rule h5 {
-      margin: 0 0 6px 0;
-      font-family: var(--sans);
-      font-weight: 600;
-      font-size: 15px;
-      letter-spacing: -0.01em;
-      color: var(--cream);
-    }
-    .rule p {
-      margin: 0;
-      font-family: var(--sans);
-      font-size: 12px;
-      line-height: 1.5;
-      color: var(--cream);
-      opacity: 0.65;
+    .wave-wrap svg {
+      width: 100%;
+      height: auto;
+      display: block;
+      overflow: visible;
     }
 
-    /* ── footer ── */
-    .footer {
-      grid-column: 1 / -1;
-      padding-top: 24px;
-      border-top: 1px solid rgba(243, 233, 210, 0.15);
-      display: flex;
-      justify-content: space-between;
-      font-family: var(--mono);
-      font-size: 10px;
+    /* caption */
+    .caption {
+      margin-top: 18px;
+      font-family: 'Space Mono', ui-monospace, monospace;
+      font-size: clamp(9px, 1.05vw, 15px);
       letter-spacing: 0.32em;
+      text-indent: 0.32em; /* optical compensation for trailing letter-spacing */
+      color: rgba(243, 233, 210, 0.75);
       text-transform: uppercase;
-      color: var(--cream);
-      opacity: 0.5;
-    }
-
-    /* ────────────────────────────────────────────
-       RESPONSIVE
-    ──────────────────────────────────────────── */
-
-    /* Tablet: 640px – 1023px */
-    @media (max-width: 1023px) {
-      .board {
-        padding: 40px;
-        grid-template-columns: repeat(6, 1fr);
-        gap: 20px;
-      }
-      .colors { grid-column: 1 / 4; }
-      .marks  { grid-column: 4 / 7; }
-      .type   { grid-column: 1 / -1; }
-      .voice  { grid-column: 1 / -1; }
-
-      .wordmark, .dot { font-size: clamp(72px, 11vw, 160px); }
-      .descriptor { font-size: clamp(10px, 1.1vw, 14px); margin-top: 20px; }
-
-      .type-display-h1 { font-size: clamp(40px, 5.5vw, 64px); }
-      .type-display-h2 { font-size: clamp(22px, 3vw, 32px); }
-
-      .applications { grid-template-columns: repeat(2, 1fr); }
-      .usage        { grid-template-columns: repeat(2, 1fr); }
-    }
-
-    /* Mobile: < 640px */
-    @media (max-width: 639px) {
-      .board {
-        padding: 24px;
-        grid-template-columns: 1fr;
-        gap: 16px;
-      }
-
-      /* header stacks */
-      .header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 10px;
-        padding-bottom: 24px;
-      }
-
-      /* hero: taller aspect ratio so wordmark has room */
-      .hero { aspect-ratio: 3 / 2; }
-      .hero .corner.tr,
-      .hero .corner.bl { display: none; }
-      .hero .corner { font-size: 9px; letter-spacing: 0.2em; }
-      .hero .corner.tl { top: 16px; left: 16px; }
-      .hero .corner.br { bottom: 16px; right: 16px; }
-
-      .wordmark, .dot { font-size: clamp(40px, 13vw, 80px); }
-      .descriptor { font-size: 9px; letter-spacing: 0.28em; margin-top: 14px; }
-
-      /* all sections full width in single-column grid */
-      .colors,
-      .marks,
-      .type,
-      .voice  { grid-column: 1 / -1; }
-
-      /* marks: 2×2 grid stays, but shrink slightly */
-      .mini { height: 90px; }
-      .mini .mini-word,
-      .mini .mini-dot { font-size: 26px; }
-
-      /* card padding tighter */
-      .card { padding: 20px; }
-
-      /* color row smaller swatch */
-      .swatch { width: 40px; height: 40px; }
-      .color-row { grid-template-columns: 40px 1fr auto; gap: 14px; }
-      .color-row .hex { font-size: 14px; }
-      .color-row .role { font-size: 9px; letter-spacing: 0.2em; }
-
-      /* type spec stacks */
-      .type-spec { grid-template-columns: 1fr; gap: 10px; padding: 16px 0; }
-      .type-display-h1 { font-size: clamp(32px, 10vw, 48px); }
-      .type-display-h2 { font-size: clamp(18px, 5vw, 26px); }
-      .type-display-body { font-size: 14px; max-width: none; }
-
-      /* applications: single column */
-      .applications { grid-template-columns: 1fr; gap: 16px; }
-      .app.poster .big { font-size: 36px; }
-      .app.social .stamp { font-size: 48px; }
-
-      /* favicon: wrap, hide tiny academic sizes */
-      .favicons-row { gap: 20px; }
-      .fav-tiny { display: none; }
-      .browser-tab { display: none; }
-
-      /* usage: 2 columns on mobile */
-      .usage { grid-template-columns: 1fr 1fr; gap: 12px; }
-      .rule { padding: 16px; }
-
-      /* footer stacks */
-      .footer { flex-direction: column; gap: 6px; }
-    }
-
-    /* Very small: < 380px */
-    @media (max-width: 379px) {
-      .usage { grid-template-columns: 1fr; }
-      .mark-grid { grid-template-columns: 1fr 1fr; }
+      white-space: nowrap;
     }
   </style>
 </head>
 <body>
 
-<div class="board">
-
-  <!-- header -->
-  <header class="header">
-    <div>
-      <h1>Brand Board · v1.1</h1>
-      <div class="title">todae digital</div>
+  <div class="lockup">
+    <div class="word">
+      <span>todae</span>
+      <span class="dot"></span>
     </div>
-    <div class="meta">May 2026 · Internal Reference</div>
-  </header>
-
-  <!-- hero lockup -->
-  <section class="hero">
-    <div class="corner tl">Primary Lockup · HD1</div>
-    <div class="corner tr">Forest #0E3B3A</div>
-    <div class="lockup">
-      <div class="wordmark-row">
-        <span class="wordmark">todae</span>
-        <span class="dot">.</span>
-      </div>
-      <div class="descriptor">Digital / Strategy / Build</div>
+    <div class="wave-wrap">
+      <svg id="wave" viewBox="-4 -26 1008 52" preserveAspectRatio="none"></svg>
     </div>
-    <div class="corner bl">Cream #F3E9D2 · Amber #F0B034</div>
-    <div class="corner br">brand.todaedigital.com · 2026</div>
-  </section>
-
-  <!-- color tokens -->
-  <section class="card colors">
-    <div class="label">Color Tokens</div>
-    <div class="color-row" data-hex="#0E3B3A"><div class="swatch" style="background:#0E3B3A"></div><div class="hex"><span class="hex-value">#0E3B3A</span><span class="copied-label">Copied!</span></div><div class="role">Background · Forest</div></div>
-    <div class="color-row" data-hex="#F3E9D2"><div class="swatch" style="background:#F3E9D2"></div><div class="hex"><span class="hex-value">#F3E9D2</span><span class="copied-label">Copied!</span></div><div class="role">Wordmark · Cream</div></div>
-    <div class="color-row" data-hex="#F0B034"><div class="swatch" style="background:#F0B034"></div><div class="hex"><span class="hex-value">#F0B034</span><span class="copied-label">Copied!</span></div><div class="role">Accent · Amber</div></div>
-    <div class="color-row" data-hex="#3A7A6A"><div class="swatch" style="background:#3A7A6A"></div><div class="hex"><span class="hex-value">#3A7A6A</span><span class="copied-label">Copied!</span></div><div class="role">Reserved · Pine</div></div>
-    <div class="color-row" data-hex="#5DA3B8"><div class="swatch" style="background:#5DA3B8"></div><div class="hex"><span class="hex-value">#5DA3B8</span><span class="copied-label">Copied!</span></div><div class="role">Reserved · Blue</div></div>
-    <div class="color-row" data-hex="#EF6E63"><div class="swatch" style="background:#EF6E63"></div><div class="hex"><span class="hex-value">#EF6E63</span><span class="copied-label">Copied!</span></div><div class="role">Reserved · Coral</div></div>
-    <div class="color-row" data-hex="#F3EFE7"><div class="swatch" style="background:#F3EFE7"></div><div class="hex"><span class="hex-value">#F3EFE7</span><span class="copied-label">Copied!</span></div><div class="role">Surface · Bone</div></div>
-  </section>
-
-  <!-- mark variants -->
-  <section class="card marks">
-    <div class="label">Mark · Approved Variants</div>
-    <div class="mark-grid">
-      <div class="mini" style="background:#0E3B3A">
-        <div class="mini-row">
-          <span class="mini-word" style="color:#F3E9D2">todae</span>
-          <span class="mini-dot" style="color:#F0B034">.</span>
-        </div>
-        <div class="tag" style="color:#F3E9D2">HD1 · Primary</div>
-      </div>
-      <div class="mini" style="background:#F3EFE7">
-        <div class="mini-row">
-          <span class="mini-word" style="color:#0E3B3A">todae</span>
-          <span class="mini-dot" style="color:#F0B034">.</span>
-        </div>
-        <div class="tag" style="color:#0E3B3A">HD2 · Light</div>
-      </div>
-      <div class="mini" style="background:#F0B034">
-        <div class="mini-row">
-          <span class="mini-word" style="color:#0E3B3A">todae</span>
-          <span class="mini-dot" style="color:#EF6E63">.</span>
-        </div>
-        <div class="tag" style="color:#0E3B3A">HD3 · Loud</div>
-      </div>
-      <div class="mini" style="background:#0E3B3A; border:1px solid rgba(243,233,210,0.15)">
-        <div class="mini-row">
-          <span class="mini-word" style="color:#F3E9D2">todae</span>
-          <span class="mini-dot" style="color:#F3E9D2">.</span>
-        </div>
-        <div class="tag" style="color:#F3E9D2">HD4 · Mono</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- type system -->
-  <section class="card type">
-    <div class="label">Type System</div>
-    <div class="type-spec">
-      <div class="meta"><strong>Display</strong>Söhne 900<br/>−3% tracking</div>
-      <div class="type-display-h1">Make today's<br/>work, today.</div>
-    </div>
-    <div class="type-spec">
-      <div class="meta"><strong>Subhead</strong>Söhne 600<br/>−2% tracking</div>
-      <div class="type-display-h2">Strategy, design and engineering for ambitious teams.</div>
-    </div>
-    <div class="type-spec">
-      <div class="meta"><strong>Body</strong>Söhne 400<br/>1.55 leading</div>
-      <div class="type-display-body">We help operators ship the next version of their product without losing the thread that made the first version work. Pragmatic, opinionated, and on the clock.</div>
-    </div>
-    <div class="type-spec">
-      <div class="meta"><strong>Mono</strong>Söhne Mono 500<br/>+32% tracking</div>
-      <div class="type-display-mono">Eyebrow · Caption · Metadata · UI</div>
-    </div>
-  </section>
-
-  <!-- voice / principles -->
-  <section class="card voice">
-    <div class="label">Voice · Principles</div>
-    <div class="principles">
-      <div class="principle">
-        <div class="num">01</div>
-        <div>
-          <h4>Plain over polished.</h4>
-          <p>Say the thing. No throat-clearing, no stacked adjectives, no "solutions."</p>
-        </div>
-      </div>
-      <div class="principle">
-        <div class="num">02</div>
-        <div>
-          <h4>Built, not pitched.</h4>
-          <p>Show the work. Receipts beat decks; demos beat receipts.</p>
-        </div>
-      </div>
-      <div class="principle">
-        <div class="num">03</div>
-        <div>
-          <h4>Today, with care.</h4>
-          <p>Move now. Be specific. Leave the next person something to build on.</p>
-        </div>
-      </div>
-      <div class="principle">
-        <div class="num">04</div>
-        <div>
-          <h4>Warm, not cute.</h4>
-          <p>Cream + amber is the smile. The rest of the language stays grown.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- applications -->
-  <section class="applications">
-    <div class="app card-app">
-      <div>
-        <div class="tiny-mark"><span class="w">todae</span><span class="d">.</span></div>
-      </div>
-      <div>
-        <div class="name">Avery Shaw</div>
-        <div class="role-line">Founder · todae digital</div>
-      </div>
-      <div class="app-label" style="color:var(--forest); opacity:0.5;">01 · Card</div>
-    </div>
-
-    <div class="app poster">
-      <div class="meta">No. 04 / Spring 2026</div>
-      <h3 class="big">Make<br/>today's work,<br/>today.</h3>
-      <div class="meta">todae · digital studio</div>
-    </div>
-
-    <div class="app social">
-      <div class="stamp">todae<span class="pdot">.</span></div>
-      <div class="corner-meta">
-        <span>Open for projects</span>
-        <span>2026</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- favicon / app icon -->
-  <section class="card favicons">
-    <div class="label">Favicon · App Icon</div>
-    <div class="favicons-row">
-      <div class="fav">
-        <div class="tile rounded size-512">
-          <div class="glyph">t<span class="gd">.</span></div>
-        </div>
-        <div class="meta">512 · App Icon</div>
-      </div>
-      <div class="fav">
-        <div class="tile rounded size-180">
-          <div class="glyph">t<span class="gd">.</span></div>
-        </div>
-        <div class="meta">180 · iOS</div>
-      </div>
-      <div class="fav fav-tiny">
-        <div class="tile square size-64">
-          <div class="glyph">t<span class="gd">.</span></div>
-        </div>
-        <div class="meta">64</div>
-      </div>
-      <div class="fav fav-tiny">
-        <div class="tile square size-32">
-          <div class="glyph">t<span class="gd">.</span></div>
-        </div>
-        <div class="meta">32</div>
-      </div>
-      <div class="fav fav-tiny">
-        <div class="tile square size-16">
-          <div class="glyph">t<span class="gd">.</span></div>
-        </div>
-        <div class="meta">16</div>
-      </div>
-      <div class="fav">
-        <div class="tile circle size-64" style="background:var(--amber);">
-          <div class="glyph" style="color:var(--forest);">t<span class="gd" style="color:var(--forest);">.</span></div>
-        </div>
-        <div class="meta">Alt · Amber</div>
-      </div>
-      <div class="fav">
-        <div class="tile circle size-64" style="background:var(--bone);">
-          <div class="glyph" style="color:var(--forest);">t<span class="gd">.</span></div>
-        </div>
-        <div class="meta">Alt · Bone</div>
-      </div>
-    </div>
-
-    <div class="browser-tab">
-      <div class="tab">
-        <div class="ficon"><div class="glyph">t<span class="gd">.</span></div></div>
-        <span>todae digital</span>
-        <span class="x">×</span>
-      </div>
-      <div class="ghost-tab">Inbox (3)</div>
-      <div class="ghost-tab">Linear</div>
-    </div>
-  </section>
-
-  <!-- usage rules -->
-  <section class="usage">
-    <div class="rule do">
-      <div class="icon">✓</div>
-      <h5>Pair with breathing room.</h5>
-      <p>Minimum clear space equal to the height of the "t" on every side of the lockup.</p>
-    </div>
-    <div class="rule do">
-      <div class="icon">✓</div>
-      <h5>Lead with Forest.</h5>
-      <p>Forest is the brand voice at rest. Bone for documents, Amber for emphasis.</p>
-    </div>
-    <div class="rule dont">
-      <div class="icon">✕</div>
-      <h5>Don't recolor the dot.</h5>
-      <p>The Amber period is the brand's heartbeat. Don't tint, gradient, or replace it.</p>
-    </div>
-    <div class="rule dont">
-      <div class="icon">✕</div>
-      <h5>Don't stretch or outline.</h5>
-      <p>The wordmark sits in Söhne 900 only. No condensed, italic, stroked, or shadowed forms.</p>
-    </div>
-  </section>
-
-  <footer class="footer">
-    <span>todae digital · brand reference</span>
-    <span>v1.1 · May 2026</span>
-  </footer>
-
-</div>
+    <div class="caption">Digital / Strategy / Build</div>
+  </div>
 
   <script>
-    document.querySelectorAll('.color-row[data-hex]').forEach(row => {
-      row.addEventListener('click', () => {
-        navigator.clipboard.writeText(row.dataset.hex).then(() => {
-          row.classList.add('copied');
-          setTimeout(() => row.classList.remove('copied'), 1400);
-        });
-      });
-    });
+    // Smooth Catmull-Rom → cubic bezier sine wave
+    // Matches the design: amplitude 18, frequency 3, stroke 4, Pine #3A7A6A
+    function buildWave(W, amp, freq) {
+      const samples = 160;
+      const pts = [];
+      for (let i = 0; i <= samples; i++) {
+        const t = i / samples;
+        pts.push([t * W, Math.sin(t * Math.PI * 2 * freq) * amp]);
+      }
+      const d = [`M ${pts[0][0].toFixed(2)} ${pts[0][1].toFixed(2)}`];
+      for (let i = 0; i < pts.length - 1; i++) {
+        const p0 = pts[i - 1] || pts[i];
+        const p1 = pts[i];
+        const p2 = pts[i + 1];
+        const p3 = pts[i + 2] || p2;
+        const c1x = p1[0] + (p2[0] - p0[0]) / 6;
+        const c1y = p1[1] + (p2[1] - p0[1]) / 6;
+        const c2x = p2[0] - (p3[0] - p1[0]) / 6;
+        const c2y = p2[1] - (p3[1] - p1[1]) / 6;
+        d.push(`C ${c1x.toFixed(2)} ${c1y.toFixed(2)}, ${c2x.toFixed(2)} ${c2y.toFixed(2)}, ${p2[0].toFixed(2)} ${p2[1].toFixed(2)}`);
+      }
+      return d.join(' ');
+    }
+
+    const svg  = document.getElementById('wave');
+    const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    path.setAttribute('fill',             'none');
+    path.setAttribute('stroke',           '#3A7A6A');
+    path.setAttribute('stroke-width',     '4');
+    path.setAttribute('stroke-linecap',   'round');
+    path.setAttribute('stroke-linejoin',  'round');
+    path.setAttribute('d', buildWave(1000, 18, 3));
+    svg.appendChild(path);
   </script>
+
 </body>
 </html>
