@@ -1,14 +1,15 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
   <!-- Rounded square background -->
   <rect width="512" height="512" rx="110" fill="#0E3B3A"/>
-  <!-- Lowercase "t" — Inter Black fallback if Söhne not available -->
+  <!-- "t." as a unified glyph — period character matches brand board tile treatment -->
+  <!-- Archivo Black mirrors the updated wordmark; tight -0.06em tracking pulls dot close -->
   <text
-    x="108"
-    y="390"
-    font-family="'Söhne', 'Inter', 'Helvetica Neue', Arial, sans-serif"
+    x="256"
+    y="362"
+    text-anchor="middle"
+    font-family="'Archivo Black', 'Inter', 'Helvetica Neue', Arial, sans-serif"
     font-weight="900"
-    font-size="340"
-    fill="#F3E9D2">t</text>
-  <!-- Amber dot -->
-  <circle cx="335" cy="372" r="56" fill="#F0B034"/>
+    font-size="300"
+    letter-spacing="-18"
+    fill="#F3E9D2">t<tspan fill="#F0B034">.</tspan></text>
 </svg>
