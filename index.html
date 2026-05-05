@@ -135,9 +135,11 @@
       return d.join(' ');
     }
 
-    const svg      = document.getElementById('wave');
-    const waveWrap = svg.parentElement;
-    const wordText = document.getElementById('wordText');
+    const svg       = document.getElementById('wave');
+    const waveWrap  = svg.parentElement;
+    const wordEl    = document.querySelector('.word');
+    const wordText  = document.getElementById('wordText');
+    const captionEl = document.querySelector('.caption');
 
     const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
     path.setAttribute('fill',            'none');
@@ -148,15 +150,28 @@
     path.setAttribute('d', buildWave(1000, 18, 3));
     svg.appendChild(path);
 
-    // Match wave width to the "todae" text (not the dot)
-    function sizeWave() {
-      const w = wordText.getBoundingClientRect().width;
-      waveWrap.style.width = w + 'px';
+    function sizeAll() {
+      // Reset any previous override so we measure natural CSS sizes
+      wordEl.style.fontSize = '';
+      waveWrap.style.width  = '';
+
+      const captionW = captionEl.getBoundingClientRect().width;
+      const wordW    = wordEl.getBoundingClientRect().width;
+
+      if (captionW > wordW) {
+        // Mobile: caption is wider — scale the wordmark up to match it
+        const base = parseFloat(getComputedStyle(wordEl).fontSize);
+        wordEl.style.fontSize = (base * captionW / wordW) + 'px';
+        waveWrap.style.width  = captionW + 'px';
+      } else {
+        // Desktop: wordmark is wider — wave matches the "todae" text span only
+        waveWrap.style.width = wordText.getBoundingClientRect().width + 'px';
+      }
     }
 
     document.fonts.ready.then(() => {
-      sizeWave();
-      window.addEventListener('resize', sizeWave);
+      sizeAll();
+      window.addEventListener('resize', sizeAll);
     });
   </script>
 
