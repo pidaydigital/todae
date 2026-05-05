@@ -136,7 +136,7 @@
   <div class="lockup">
     <div class="wordmark-stack">
       <div class="wordmark-row" id="wordmarkRow">
-        <span class="wordmark" id="wordmarkText">todae</span>
+        <span class="wordmark" id="wordmarkText" style="display:inline-block">todae</span>
         <span class="dot">.</span>
       </div>
       <!-- Pre-computed sine wave path from brand board (viewBox -4 -26 1008 52) -->
@@ -149,6 +149,7 @@
 
   <script>
     const wordmarkRow  = document.getElementById('wordmarkRow');
+    const wordmarkText = document.getElementById('wordmarkText');
     const squiggle     = document.getElementById('squiggle');
     const descriptor   = document.querySelector('.descriptor');
     const wordmarkEl   = document.querySelector('.wordmark');
@@ -160,6 +161,8 @@
 
       // Double RAF: ensures browser has painted the reset before measuring
       requestAnimationFrame(() => requestAnimationFrame(() => {
+        // Squiggle width tracks the "todae" text only (dot sits outside, to the right)
+        const textW = wordmarkText.getBoundingClientRect().width;
         const rowW  = wordmarkRow.getBoundingClientRect().width;
         const descW = descriptor.getBoundingClientRect().width;
 
@@ -167,10 +170,11 @@
           // Mobile: descriptor wider — scale wordmark up to match
           const base = parseFloat(getComputedStyle(wordmarkEl).fontSize);
           wordmarkEl.style.fontSize = (base * descW / rowW) + 'px';
-          squiggle.style.width      = descW + 'px';
+          // Re-measure text width after scale
+          squiggle.style.width = wordmarkText.getBoundingClientRect().width + 'px';
         } else {
-          // Desktop: wordmark wider — squiggle matches wordmark row
-          squiggle.style.width = rowW + 'px';
+          // Desktop: squiggle spans just the "todae" text, not the dot
+          squiggle.style.width = textW + 'px';
         }
       }));
     }
