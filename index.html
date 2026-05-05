@@ -106,5 +106,33 @@
     </div>
     <div class="descriptor">Digital / Strategy / Build</div>
   </div>
+  <script>
+    function matchWordmarkToDescriptor() {
+      if (window.innerWidth > 767) return;
+
+      const row      = document.querySelector('.wordmark-row');
+      const desc     = document.querySelector('.descriptor');
+      const wordmark = document.querySelector('.wordmark');
+      const dot      = document.querySelector('.dot');
+
+      // Reset so we measure the CSS-natural size
+      wordmark.style.fontSize = '';
+      dot.style.fontSize      = '';
+
+      requestAnimationFrame(() => {
+        const ratio   = desc.offsetWidth / row.offsetWidth;
+        const natural = parseFloat(getComputedStyle(wordmark).fontSize);
+        const scaled  = (natural * ratio).toFixed(2) + 'px';
+        wordmark.style.fontSize = scaled;
+        dot.style.fontSize      = scaled;
+      });
+    }
+
+    // Wait for web fonts before measuring
+    document.fonts.ready.then(() => {
+      matchWordmarkToDescriptor();
+      window.addEventListener('resize', matchWordmarkToDescriptor);
+    });
+  </script>
 </body>
 </html>
