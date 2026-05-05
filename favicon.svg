@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- Rounded square background -->
+  <rect width="512" height="512" rx="110" fill="#0E3B3A"/>
+  <!-- Lowercase "t" — Inter Black fallback if Söhne not available -->
+  <text
+    x="108"
+    y="390"
+    font-family="'Söhne', 'Inter', 'Helvetica Neue', Arial, sans-serif"
+    font-weight="900"
+    font-size="340"
+    fill="#F3E9D2">t</text>
+  <!-- Amber dot -->
+  <circle cx="335" cy="372" r="56" fill="#F0B034"/>
+</svg>
