@@ -16,14 +16,30 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <!-- JetBrains Mono + Inter as web-safe fallbacks when Söhne isn't installed locally -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;900&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet" />
 
   <style>
+    @font-face {
+      font-family: 'Söhne';
+      font-weight: 100 900;
+      src: local('Söhne'), local('Soehne'), local('Söhne Buch'), local('Söhne Kraftig'), local('Söhne Dreiviertelfett'), local('Söhne Extrafett');
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Söhne Mono';
+      font-weight: 400 700;
+      src: local('Söhne Mono'), local('Soehne Mono'), local('Söhne Mono Buch'), local('Söhne Mono Kraftig');
+      font-display: swap;
+    }
+
     :root {
       --forest: #0E3B3A;
       --cream:  #F3E9D2;
       --amber:  #F0B034;
       --pine:   #3A7A6A;
+      --sans: 'Söhne', 'Inter', system-ui, -apple-system, sans-serif;
+      --mono: 'Söhne Mono', 'JetBrains Mono', ui-monospace, monospace;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -48,12 +64,13 @@
       user-select: none;
     }
 
-    /* wordmark */
+    /* wordmark — Söhne 900, −3% tracking per brand spec */
     .word {
-      font-family: 'Archivo Black', system-ui, sans-serif;
+      font-family: var(--sans);
+      font-weight: 900;
       font-size: clamp(48px, 12vw, 180px);
       line-height: 1;
-      letter-spacing: -0.04em;
+      letter-spacing: -0.03em;
       color: var(--cream);
       display: inline-flex;
       align-items: flex-end;
@@ -84,10 +101,11 @@
       overflow: visible;
     }
 
-    /* caption */
+    /* caption — Söhne Mono 500, +32% tracking per brand spec */
     .caption {
       margin-top: 18px;
-      font-family: 'Space Mono', ui-monospace, monospace;
+      font-family: var(--mono);
+      font-weight: 500;
       font-size: clamp(9px, 1.05vw, 15px);
       letter-spacing: 0.32em;
       text-indent: 0.32em; /* optical compensation for trailing letter-spacing */
@@ -113,6 +131,7 @@
   <script>
     // Smooth Catmull-Rom → cubic bezier sine wave
     // Matches the design: amplitude 18, frequency 3, stroke 4, Pine #3A7A6A
+    // Typography: Söhne 900 wordmark, Söhne Mono 500 caption (brand spec)
     function buildWave(W, amp, freq) {
       const samples = 160;
       const pts = [];
