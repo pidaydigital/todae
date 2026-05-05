@@ -154,6 +154,11 @@
     const descriptor   = document.querySelector('.descriptor');
     const wordmarkEl   = document.querySelector('.wordmark');
 
+    // Squiggle extends ~20% beyond the wordmark row on both sides (brand spec).
+    // On mobile when the descriptor is wider, wordmark scales up to match the descriptor
+    // and the squiggle spans the descriptor exactly (all three elements align).
+    const SQUIGGLE_SCALE = 1.20;
+
     function sizeAll() {
       // Reset any previous overrides
       wordmarkEl.style.fontSize = '';
@@ -161,20 +166,19 @@
 
       // Double RAF: ensures browser has painted the reset before measuring
       requestAnimationFrame(() => requestAnimationFrame(() => {
-        // Squiggle width tracks the "todae" text only (dot sits outside, to the right)
-        const textW = wordmarkText.getBoundingClientRect().width;
         const rowW  = wordmarkRow.getBoundingClientRect().width;
         const descW = descriptor.getBoundingClientRect().width;
 
-        if (descW > rowW) {
-          // Mobile: descriptor wider — scale wordmark up to match
+        if (descW > rowW * SQUIGGLE_SCALE) {
+          // Mobile: descriptor wider than even the extended squiggle —
+          // scale wordmark so the squiggle at 120% exactly matches the descriptor
+          const targetRowW = descW / SQUIGGLE_SCALE;
           const base = parseFloat(getComputedStyle(wordmarkEl).fontSize);
-          wordmarkEl.style.fontSize = (base * descW / rowW) + 'px';
-          // Re-measure text width after scale
-          squiggle.style.width = wordmarkText.getBoundingClientRect().width + 'px';
+          wordmarkEl.style.fontSize = (base * targetRowW / rowW) + 'px';
+          squiggle.style.width = descW + 'px';
         } else {
-          // Desktop: squiggle spans just the "todae" text, not the dot
-          squiggle.style.width = textW + 'px';
+          // Desktop: squiggle is 120% of the wordmark row, centered by the stack
+          squiggle.style.width = (rowW * SQUIGGLE_SCALE) + 'px';
         }
       }));
     }
