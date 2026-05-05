@@ -193,7 +193,32 @@
       gap: 24px;
       padding: 14px 0;
       border-bottom: 1px solid rgba(243, 233, 210, 0.08);
+      cursor: pointer;
+      border-radius: 3px;
+      transition: background 0.15s;
+      margin: 0 -8px;
+      padding-left: 8px;
+      padding-right: 8px;
     }
+    .color-row:hover { background: rgba(243, 233, 210, 0.06); }
+    .color-row.copied { background: rgba(240, 176, 52, 0.12); }
+    .color-row .hex { position: relative; }
+    .color-row .copied-label {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--amber);
+      opacity: 0;
+      transition: opacity 0.15s;
+      white-space: nowrap;
+    }
+    .color-row.copied .hex-value { opacity: 0; }
+    .color-row.copied .copied-label { opacity: 1; }
     .color-row:last-child { border-bottom: none; }
     .swatch {
       width: 56px;
@@ -768,13 +793,13 @@
   <!-- color tokens -->
   <section class="card colors">
     <div class="label">Color Tokens</div>
-    <div class="color-row"><div class="swatch" style="background:#0E3B3A"></div><div class="hex">#0E3B3A</div><div class="role">Background · Forest</div></div>
-    <div class="color-row"><div class="swatch" style="background:#F3E9D2"></div><div class="hex">#F3E9D2</div><div class="role">Wordmark · Cream</div></div>
-    <div class="color-row"><div class="swatch" style="background:#F0B034"></div><div class="hex">#F0B034</div><div class="role">Accent · Amber</div></div>
-    <div class="color-row"><div class="swatch" style="background:#3A7A6A"></div><div class="hex">#3A7A6A</div><div class="role">Reserved · Pine</div></div>
-    <div class="color-row"><div class="swatch" style="background:#5DA3B8"></div><div class="hex">#5DA3B8</div><div class="role">Reserved · Blue</div></div>
-    <div class="color-row"><div class="swatch" style="background:#EF6E63"></div><div class="hex">#EF6E63</div><div class="role">Reserved · Coral</div></div>
-    <div class="color-row"><div class="swatch" style="background:#F3EFE7"></div><div class="hex">#F3EFE7</div><div class="role">Surface · Bone</div></div>
+    <div class="color-row" data-hex="#0E3B3A"><div class="swatch" style="background:#0E3B3A"></div><div class="hex"><span class="hex-value">#0E3B3A</span><span class="copied-label">Copied!</span></div><div class="role">Background · Forest</div></div>
+    <div class="color-row" data-hex="#F3E9D2"><div class="swatch" style="background:#F3E9D2"></div><div class="hex"><span class="hex-value">#F3E9D2</span><span class="copied-label">Copied!</span></div><div class="role">Wordmark · Cream</div></div>
+    <div class="color-row" data-hex="#F0B034"><div class="swatch" style="background:#F0B034"></div><div class="hex"><span class="hex-value">#F0B034</span><span class="copied-label">Copied!</span></div><div class="role">Accent · Amber</div></div>
+    <div class="color-row" data-hex="#3A7A6A"><div class="swatch" style="background:#3A7A6A"></div><div class="hex"><span class="hex-value">#3A7A6A</span><span class="copied-label">Copied!</span></div><div class="role">Reserved · Pine</div></div>
+    <div class="color-row" data-hex="#5DA3B8"><div class="swatch" style="background:#5DA3B8"></div><div class="hex"><span class="hex-value">#5DA3B8</span><span class="copied-label">Copied!</span></div><div class="role">Reserved · Blue</div></div>
+    <div class="color-row" data-hex="#EF6E63"><div class="swatch" style="background:#EF6E63"></div><div class="hex"><span class="hex-value">#EF6E63</span><span class="copied-label">Copied!</span></div><div class="role">Reserved · Coral</div></div>
+    <div class="color-row" data-hex="#F3EFE7"><div class="swatch" style="background:#F3EFE7"></div><div class="hex"><span class="hex-value">#F3EFE7</span><span class="copied-label">Copied!</span></div><div class="role">Surface · Bone</div></div>
   </section>
 
   <!-- mark variants -->
@@ -986,5 +1011,15 @@
 
 </div>
 
+  <script>
+    document.querySelectorAll('.color-row[data-hex]').forEach(row => {
+      row.addEventListener('click', () => {
+        navigator.clipboard.writeText(row.dataset.hex).then(() => {
+          row.classList.add('copied');
+          setTimeout(() => row.classList.remove('copied'), 1400);
+        });
+      });
+    });
+  </script>
 </body>
 </html>
