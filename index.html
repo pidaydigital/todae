@@ -57,6 +57,7 @@
       text-rendering: optimizeLegibility;
     }
 
+    /* ── lockup ── */
     .lockup {
       display: flex;
       flex-direction: column;
@@ -64,45 +65,59 @@
       user-select: none;
     }
 
-    /* wordmark — Söhne 900, −3% tracking per brand spec */
-    .word {
+    /* shrink-wraps to the widest child (wordmark-row or squiggle) */
+    .wordmark-stack {
+      display: inline-block;
+      text-align: center;
+    }
+
+    /* wordmark row — Söhne 900, −3% tracking per brand spec */
+    .wordmark-row {
+      display: inline-flex;
+      width: fit-content;
+      align-items: baseline;
+      line-height: 0.9;
+    }
+
+    .wordmark {
       font-family: var(--sans);
       font-weight: 900;
       font-size: clamp(48px, 12vw, 180px);
-      line-height: 1;
       letter-spacing: -0.03em;
+      line-height: 0.9;
       color: var(--cream);
-      display: inline-flex;
-      align-items: flex-end;
     }
 
-    /* circular amber dot — sized relative to the wordmark */
-    .word .dot {
-      width: 0.18em;
-      height: 0.18em;
-      border-radius: 50%;
-      background: var(--amber);
-      display: inline-block;
-      flex-shrink: 0;
-      margin-left: 0.03em;
-      margin-bottom: 0.04em;
+    /* period glyph — same font/weight as wordmark, amber */
+    .dot {
+      font-family: var(--sans);
+      font-weight: 900;
+      font-size: clamp(48px, 12vw, 180px);
+      line-height: 0.9;
+      color: var(--amber);
+      margin-left: -0.02em;
     }
 
-    /* sine wave */
-    .wave-wrap {
-      margin-top: 6px;
-      display: flex;
-      justify-content: center;
-    }
-    .wave-wrap svg {
-      width: 100%;
-      height: auto;
+    /* squiggle — width set by JS to match wordmark-row */
+    .squiggle {
       display: block;
+      color: var(--pine);
+      width: 100%;
+      height: 32px;
+      margin: 14px auto 0;
       overflow: visible;
     }
+    .squiggle path {
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.6;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      vector-effect: non-scaling-stroke;
+    }
 
-    /* caption — Söhne Mono 500, +32% tracking per brand spec */
-    .caption {
+    /* descriptor — Söhne Mono 500, +32% tracking per brand spec */
+    .descriptor {
       margin-top: 18px;
       font-family: var(--mono);
       font-weight: 500;
@@ -112,81 +127,50 @@
       color: rgba(243, 233, 210, 0.75);
       text-transform: uppercase;
       white-space: nowrap;
+      opacity: 0.85;
     }
   </style>
 </head>
 <body>
 
   <div class="lockup">
-    <div class="word">
-      <span id="wordText">todae</span>
-      <span class="dot"></span>
+    <div class="wordmark-stack">
+      <div class="wordmark-row" id="wordmarkRow">
+        <span class="wordmark" id="wordmarkText">todae</span>
+        <span class="dot">.</span>
+      </div>
+      <!-- Pre-computed sine wave path from brand board (viewBox -4 -26 1008 52) -->
+      <svg class="squiggle" id="squiggle" viewBox="-4 -26 1008 52" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M 0.00 0.00 C 1.04 0.35, 4.17 1.42, 6.25 2.12 C 8.33 2.82, 10.42 3.52, 12.50 4.20 C 14.58 4.89, 16.67 5.57, 18.75 6.23 C 20.83 6.89, 22.92 7.54, 25.00 8.17 C 27.08 8.80, 29.17 9.41, 31.25 10.00 C 33.33 10.59, 35.42 11.15, 37.50 11.69 C 39.58 12.23, 41.67 12.74, 43.75 13.22 C 45.83 13.70, 47.92 14.15, 50.00 14.56 C 52.08 14.98, 54.17 15.36, 56.25 15.70 C 58.33 16.05, 60.42 16.36, 62.50 16.63 C 64.58 16.90, 66.67 17.13, 68.75 17.32 C 70.83 17.52, 72.92 17.67, 75.00 17.78 C 77.08 17.89, 79.17 17.96, 81.25 17.99 C 83.33 18.01, 85.42 18.00, 87.50 17.94 C 89.58 17.89, 91.67 17.79, 93.75 17.65 C 95.83 17.52, 97.92 17.34, 100.00 17.12 C 102.08 16.90, 104.17 16.64, 106.25 16.35 C 108.33 16.05, 110.42 15.72, 112.50 15.35 C 114.58 14.98, 116.67 14.57, 118.75 14.14 C 120.83 13.70, 122.92 13.23, 125.00 12.73 C 127.08 12.23, 129.17 11.70, 131.25 11.14 C 133.33 10.59, 135.42 10.01, 137.50 9.40 C 139.58 8.80, 141.67 8.18, 143.75 7.54 C 145.83 6.90, 147.92 6.23, 150.00 5.56 C 152.08 4.89, 154.17 4.20, 156.25 3.51 C 158.33 2.82, 160.42 2.12, 162.50 1.41 C 164.58 0.71, 166.67 -0.00, 168.75 -0.71 C 170.83 -1.41, 172.92 -2.12, 175.00 -2.82 C 177.08 -3.51, 179.17 -4.21, 181.25 -4.89 C 183.33 -5.56, 185.42 -6.24, 187.50 -6.89 C 189.58 -7.54, 191.67 -8.18, 193.75 -8.80 C 195.83 -9.41, 197.92 -10.01, 200.00 -10.58 C 202.08 -11.15, 204.17 -11.70, 206.25 -12.22 C 208.33 -12.74, 210.42 -13.23, 212.50 -13.69 C 214.58 -14.15, 216.67 -14.57, 218.75 -14.97 C 220.83 -15.36, 222.92 -15.72, 225.00 -16.04 C 227.08 -16.36, 229.17 -16.64, 231.25 -16.89 C 233.33 -17.13, 235.42 -17.34, 237.50 -17.50 C 239.58 -17.67, 241.67 -17.79, 243.75 -17.88 C 245.83 -17.96, 247.92 -18.00, 250.00 -18.00 C 252.08 -18.00, 254.17 -17.96, 256.25 -17.88 C 258.33 -17.79, 260.42 -17.67, 262.50 -17.50 C 264.58 -17.34, 266.67 -17.13, 268.75 -16.89 C 270.83 -16.64, 272.92 -16.36, 275.00 -16.04 C 277.08 -15.72, 279.17 -15.36, 281.25 -14.97 C 283.33 -14.57, 285.42 -14.15, 287.50 -13.69 C 289.58 -13.23, 291.67 -12.74, 293.75 -12.22 C 295.83 -11.70, 297.92 -11.15, 300.00 -10.58 C 302.08 -10.01, 304.17 -9.41, 306.25 -8.80 C 308.33 -8.18, 310.42 -7.54, 312.50 -6.89 C 314.58 -6.24, 316.67 -5.56, 318.75 -4.89 C 320.83 -4.21, 322.92 -3.51, 325.00 -2.82 C 327.08 -2.12, 329.17 -1.41, 331.25 -0.71 C 333.33 -0.00, 335.42 0.71, 337.50 1.41 C 339.58 2.12, 341.67 2.82, 343.75 3.51 C 345.83 4.20, 347.92 4.89, 350.00 5.56 C 352.08 6.23, 354.17 6.90, 356.25 7.54 C 358.33 8.18, 360.42 8.80, 362.50 9.40 C 364.58 10.01, 366.67 10.59, 368.75 11.14 C 370.83 11.70, 372.92 12.23, 375.00 12.73 C 377.08 13.23, 379.17 13.70, 381.25 14.14 C 383.33 14.57, 385.42 14.98, 387.50 15.35 C 389.58 15.72, 391.67 16.05, 393.75 16.35 C 395.83 16.64, 397.92 16.90, 400.00 17.12 C 402.08 17.34, 404.17 17.52, 406.25 17.65 C 408.33 17.79, 410.42 17.89, 412.50 17.94 C 414.58 18.00, 416.67 18.01, 418.75 17.99 C 420.83 17.96, 422.92 17.89, 425.00 17.78 C 427.08 17.67, 429.17 17.52, 431.25 17.32 C 433.33 17.13, 435.42 16.90, 437.50 16.63 C 439.58 16.36, 441.67 16.05, 443.75 15.70 C 445.83 15.36, 447.92 14.98, 450.00 14.56 C 452.08 14.15, 454.17 13.70, 456.25 13.22 C 458.33 12.74, 460.42 12.23, 462.50 11.69 C 464.58 11.15, 466.67 10.59, 468.75 10.00 C 470.83 9.41, 472.92 8.80, 475.00 8.17 C 477.08 7.54, 479.17 6.89, 481.25 6.23 C 483.33 5.57, 485.42 4.89, 487.50 4.20 C 489.58 3.52, 491.67 2.82, 493.75 2.12 C 495.83 1.42, 497.92 0.71, 500.00 0.00 C 502.08 -0.71, 504.17 -1.42, 506.25 -2.12 C 508.33 -2.82, 510.42 -3.52, 512.50 -4.20 C 514.58 -4.89, 516.67 -5.57, 518.75 -6.23 C 520.83 -6.89, 522.92 -7.54, 525.00 -8.17 C 527.08 -8.80, 529.17 -9.41, 531.25 -10.00 C 533.33 -10.59, 535.42 -11.15, 537.50 -11.69 C 539.58 -12.23, 541.67 -12.74, 543.75 -13.22 C 545.83 -13.70, 547.92 -14.15, 550.00 -14.56 C 552.08 -14.98, 554.17 -15.36, 556.25 -15.70 C 558.33 -16.05, 560.42 -16.36, 562.50 -16.63 C 564.58 -16.90, 566.67 -17.13, 568.75 -17.32 C 570.83 -17.52, 572.92 -17.67, 575.00 -17.78 C 577.08 -17.89, 579.17 -17.96, 581.25 -17.99 C 583.33 -18.01, 585.42 -18.00, 587.50 -17.94 C 589.58 -17.89, 591.67 -17.79, 593.75 -17.65 C 595.83 -17.52, 597.92 -17.34, 600.00 -17.12 C 602.08 -16.90, 604.17 -16.64, 606.25 -16.35 C 608.33 -16.05, 610.42 -15.72, 612.50 -15.35 C 614.58 -14.98, 616.67 -14.57, 618.75 -14.14 C 620.83 -13.70, 622.92 -13.23, 625.00 -12.73 C 627.08 -12.23, 629.17 -11.70, 631.25 -11.14 C 633.33 -10.59, 635.42 -10.01, 637.50 -9.40 C 639.58 -8.80, 641.67 -8.18, 643.75 -7.54 C 645.83 -6.90, 647.92 -6.23, 650.00 -5.56 C 652.08 -4.89, 654.17 -4.20, 656.25 -3.51 C 658.33 -2.82, 660.42 -2.12, 662.50 -1.41 C 664.58 -0.71, 666.67 0.00, 668.75 0.71 C 670.83 1.41, 672.92 2.12, 675.00 2.82 C 677.08 3.51, 679.17 4.21, 681.25 4.89 C 683.33 5.56, 685.42 6.24, 687.50 6.89 C 689.58 7.54, 691.67 8.18, 693.75 8.80 C 695.83 9.41, 697.92 10.01, 700.00 10.58 C 702.08 11.15, 704.17 11.70, 706.25 12.22 C 708.33 12.74, 710.42 13.23, 712.50 13.69 C 714.58 14.15, 716.67 14.57, 718.75 14.97 C 720.83 15.36, 722.92 15.72, 725.00 16.04 C 727.08 16.36, 729.17 16.64, 731.25 16.89 C 733.33 17.13, 735.42 17.34, 737.50 17.50 C 739.58 17.67, 741.67 17.79, 743.75 17.88 C 745.83 17.96, 747.92 18.00, 750.00 18.00 C 752.08 18.00, 754.17 17.96, 756.25 17.88 C 758.33 17.79, 760.42 17.67, 762.50 17.50 C 764.58 17.34, 766.67 17.13, 768.75 16.89 C 770.83 16.64, 772.92 16.36, 775.00 16.04 C 777.08 15.72, 779.17 15.36, 781.25 14.97 C 783.33 14.57, 785.42 14.15, 787.50 13.69 C 789.58 13.23, 791.67 12.74, 793.75 12.22 C 795.83 11.70, 797.92 11.15, 800.00 10.58 C 802.08 10.01, 804.17 9.41, 806.25 8.80 C 808.33 8.18, 810.42 7.54, 812.50 6.89 C 814.58 6.24, 816.67 5.56, 818.75 4.89 C 820.83 4.21, 822.92 3.51, 825.00 2.82 C 827.08 2.12, 829.17 1.41, 831.25 0.71 C 833.33 0.00, 835.42 -0.71, 837.50 -1.41 C 839.58 -2.12, 841.67 -2.82, 843.75 -3.51 C 845.83 -4.20, 847.92 -4.89, 850.00 -5.56 C 852.08 -6.23, 854.17 -6.90, 856.25 -7.54 C 858.33 -8.18, 860.42 -8.80, 862.50 -9.40 C 864.58 -10.01, 866.67 -10.59, 868.75 -11.14 C 870.83 -11.70, 872.92 -12.23, 875.00 -12.73 C 877.08 -13.23, 879.17 -13.70, 881.25 -14.14 C 883.33 -14.57, 885.42 -14.98, 887.50 -15.35 C 889.58 -15.72, 891.67 -16.05, 893.75 -16.35 C 895.83 -16.64, 897.92 -16.90, 900.00 -17.12 C 902.08 -17.34, 904.17 -17.52, 906.25 -17.65 C 908.33 -17.79, 910.42 -17.89, 912.50 -17.94 C 914.58 -18.00, 916.67 -18.01, 918.75 -17.99 C 920.83 -17.96, 922.92 -17.89, 925.00 -17.78 C 927.08 -17.67, 929.17 -17.52, 931.25 -17.32 C 933.33 -17.13, 935.42 -16.90, 937.50 -16.63 C 939.58 -16.36, 941.67 -16.05, 943.75 -15.70 C 945.83 -15.36, 947.92 -14.98, 950.00 -14.56 C 952.08 -14.15, 954.17 -13.70, 956.25 -13.22 C 958.33 -12.74, 960.42 -12.23, 962.50 -11.69 C 964.58 -11.15, 966.67 -10.59, 968.75 -10.00 C 970.83 -9.41, 972.92 -8.80, 975.00 -8.17 C 977.08 -7.54, 979.17 -6.89, 981.25 -6.23 C 983.33 -5.57, 985.42 -4.89, 987.50 -4.20 C 989.58 -3.52, 991.67 -2.82, 993.75 -2.12 C 995.83 -1.42, 998.96 -0.35, 1000.00 -0.00"/>
+      </svg>
     </div>
-    <div class="wave-wrap">
-      <svg id="wave" viewBox="-4 -26 1008 52" preserveAspectRatio="none"></svg>
-    </div>
-    <div class="caption">Digital / Strategy / Build</div>
+    <div class="descriptor">Digital Marketing</div>
   </div>
 
   <script>
-    // Smooth Catmull-Rom → cubic bezier sine wave
-    // Matches the design: amplitude 18, frequency 3, stroke 4, Pine #3A7A6A
-    // Typography: Söhne 900 wordmark, Söhne Mono 500 caption (brand spec)
-    function buildWave(W, amp, freq) {
-      const samples = 160;
-      const pts = [];
-      for (let i = 0; i <= samples; i++) {
-        const t = i / samples;
-        pts.push([t * W, Math.sin(t * Math.PI * 2 * freq) * amp]);
-      }
-      const d = [`M ${pts[0][0].toFixed(2)} ${pts[0][1].toFixed(2)}`];
-      for (let i = 0; i < pts.length - 1; i++) {
-        const p0 = pts[i - 1] || pts[i];
-        const p1 = pts[i];
-        const p2 = pts[i + 1];
-        const p3 = pts[i + 2] || p2;
-        const c1x = p1[0] + (p2[0] - p0[0]) / 6;
-        const c1y = p1[1] + (p2[1] - p0[1]) / 6;
-        const c2x = p2[0] - (p3[0] - p1[0]) / 6;
-        const c2y = p2[1] - (p3[1] - p1[1]) / 6;
-        d.push(`C ${c1x.toFixed(2)} ${c1y.toFixed(2)}, ${c2x.toFixed(2)} ${c2y.toFixed(2)}, ${p2[0].toFixed(2)} ${p2[1].toFixed(2)}`);
-      }
-      return d.join(' ');
-    }
-
-    const svg       = document.getElementById('wave');
-    const waveWrap  = svg.parentElement;
-    const wordEl    = document.querySelector('.word');
-    const wordText  = document.getElementById('wordText');
-    const captionEl = document.querySelector('.caption');
-
-    const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-    path.setAttribute('fill',            'none');
-    path.setAttribute('stroke',          '#3A7A6A');
-    path.setAttribute('stroke-width',    '4');
-    path.setAttribute('stroke-linecap',  'round');
-    path.setAttribute('stroke-linejoin', 'round');
-    path.setAttribute('d', buildWave(1000, 18, 3));
-    svg.appendChild(path);
+    const wordmarkRow  = document.getElementById('wordmarkRow');
+    const squiggle     = document.getElementById('squiggle');
+    const descriptor   = document.querySelector('.descriptor');
+    const wordmarkEl   = document.querySelector('.wordmark');
 
     function sizeAll() {
-      // Reset any previous override so we measure natural CSS sizes
-      wordEl.style.fontSize = '';
-      waveWrap.style.width  = '';
+      // Reset any previous overrides
+      wordmarkEl.style.fontSize = '';
+      squiggle.style.width      = '';
 
-      // Double RAF ensures the browser has painted the reset before we measure
+      // Double RAF: ensures browser has painted the reset before measuring
       requestAnimationFrame(() => requestAnimationFrame(() => {
-        const captionW = captionEl.getBoundingClientRect().width;
-        const wordW    = wordEl.getBoundingClientRect().width;
+        const rowW  = wordmarkRow.getBoundingClientRect().width;
+        const descW = descriptor.getBoundingClientRect().width;
 
-        if (captionW > wordW) {
-          // Mobile: caption is wider — scale the wordmark up to match it
-          const base = parseFloat(getComputedStyle(wordEl).fontSize);
-          wordEl.style.fontSize = (base * captionW / wordW) + 'px';
-          waveWrap.style.width  = captionW + 'px';
+        if (descW > rowW) {
+          // Mobile: descriptor wider — scale wordmark up to match
+          const base = parseFloat(getComputedStyle(wordmarkEl).fontSize);
+          wordmarkEl.style.fontSize = (base * descW / rowW) + 'px';
+          squiggle.style.width      = descW + 'px';
         } else {
-          // Desktop: wordmark is wider — wave matches the "todae" text span only
-          waveWrap.style.width = wordText.getBoundingClientRect().width + 'px';
+          // Desktop: wordmark wider — squiggle matches wordmark row
+          squiggle.style.width = rowW + 'px';
         }
       }));
     }
